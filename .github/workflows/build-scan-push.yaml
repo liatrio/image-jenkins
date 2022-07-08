@@ -1,0 +1,42 @@
+name: Build, Scan, Push
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Release
+        id: tag
+        uses: liatrio/github-actions/conventional-release@master
+        with:
+          debug: true
+          # GITHUB_HEAD_REF is only set during PRs, otherwise it is ""
+          dryRun: ${{ github.head_ref }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    outputs:
+      newVersion: ${{ steps.tag.outputs.newVersion }}
+
+  # The build job uses the build-scan-push reusable workflow
+  build:
+    needs: release
+    uses: liatrio/github-workflows/.github/workflows/build-scan-push.yaml@main
+    with:
+      publish: ${{ github.ref == 'refs/heads/main' }}
+      repository: ghcr.io
+      registry-username: ${{ github.actor }}
+      tag: ${{ needs.release.outputs.newVersion }}
+      image-name: ${{ github.event.repository.name }}
+      nofail: true
+    secrets:
+      registry-password: ${{ secrets.GITHUB_TOKEN }}
