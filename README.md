@@ -1,5 +1,5 @@
 ## What is the image for?
-The intended purpose of this image is for it to be used as a Jenkins master which will execute Jenkins pipelines by means of different Jenkins agents. These agents are intended to be added to the Jenkins configuration as [Kubernetes](ihttps://plugins.jenkins.io/kubernetes/) pod templates by means of Jenkins Configuration as Code ([JCasC](https://github.com/jenkinsci/configuration-as-code-plugin/blob/master/README.md).
+The intended purpose of this image is for it to be used as a Jenkins master which will execute Jenkins pipelines by means of different Jenkins agents. These agents are intended to be added to the Jenkins configuration as [Kubernetes](ihttps://plugins.jenkins.io/kubernetes/) pod templates by means of Jenkins Configuration as Code ([JCasC](https://github.com/jenkinsci/configuration-as-code-plugin/blob/master/README.md)).
 
 First, an example (using `image-builder-ruby`) of configuring the pod templates (as code) in yaml so the Jenkins master is able to create pods in the Kubernetes cluster using said template.
 
