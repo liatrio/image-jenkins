@@ -32,6 +32,7 @@ cloudbees-folder:6.15
 configuration-as-code:1.51
 credentials-binding:1.27
 credentials:2.5
+curl:7.85.0
 display-url-api:2.3.5
 docker-commons:1.16
 docker-workflow:1.21
