@@ -1,4 +1,4 @@
-FROM jenkins/jenkins:2.346.3-2-lts-alpine
+FROM jenkins/jenkins:alpine
 
 LABEL org.opencontainers.image.source https://github.com/liatrio/builder-images
 
@@ -12,4 +12,4 @@ RUN jenkins-plugin-cli -f /usr/share/jenkins/ref/plugins.txt
 ENV PIPELINE_PLUGIN_VERSION 1.0.3
 RUN curl -Lo /usr/share/jenkins/ref/plugins/pipeline-status-plugin.jpi \
 	https://github.com/liatrio/pipeline-status-plugin/releases/download/${PIPELINE_PLUGIN_VERSION}/pipeline-status-plugin.jpi
-USER 1000
+#USER 1000
