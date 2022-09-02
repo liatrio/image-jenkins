@@ -1,4 +1,4 @@
-FROM jenkins/jenkins:alpine
+FROM jenkins/jenkins:2.366-alpine
 
 LABEL org.opencontainers.image.source https://github.com/liatrio/builder-images
 
