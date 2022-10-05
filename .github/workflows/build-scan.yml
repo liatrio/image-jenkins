@@ -1,0 +1,21 @@
+name: Build, Scan
+
+on:
+  # Allows scheduling via cronjob
+  schedule:
+  - cron: "0 13 * * 1-5"
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+    uses: liatrio/github-workflows/.github/workflows/build-scan-push.yaml@main
+    with:
+      publish: false
+      repository: ghcr.io
+      registry-username: ${{ github.actor }}
+      tag: test
+      image-name: ${{ github.event.repository.name }}
+      nofail: true
+    secrets:
+      registry-password: ${{ secrets.GITHUB_TOKEN }}
