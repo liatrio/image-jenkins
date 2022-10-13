@@ -3,7 +3,7 @@ name: Slack Notifications
 # Only trigger, when the build workflow succeeded
 on:
   workflow_run:
-    workflows: ["Build, Scan, Push", "Build, Scan"]
+    workflows: ["Build, Scan"]
     types:
       - completed
   workflow_dispatch:
