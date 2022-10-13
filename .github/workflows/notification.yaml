@@ -32,4 +32,4 @@ jobs:
               "Link": "https://github.com/liatrio/${{ github.event.repository.name }}/security/code-scanning"
             }
         env:
-          SLACK_WEBHOOK_URL: ${{secrets.slackWorkflowWebHook}}
+          SLACK_WEBHOOK_URL: ${{secrets.SLACK_CVE_WORKFLOW_WEBHOOK}}
