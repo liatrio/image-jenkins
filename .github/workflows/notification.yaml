@@ -1,0 +1,35 @@
+name: Slack Notifications
+
+# Only trigger, when the build workflow succeeded
+on:
+  workflow_run:
+    workflows: ["Build, Scan"]
+    types:
+      - completed
+  workflow_dispatch:
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Grab info on last code scan from github api
+        id: cve_count
+        run: |
+          echo "::set-output count=url::$(gh api -X GET "/repos/liatrio/image-jenkins/code-scanning/analyses" -F per_page=1 -q '.[].results_count')"
+        
+      - name: Send custom JSON data to Slack workflow
+        id: slack
+        uses: slackapi/slack-github-action@v1.22.0
+        with:
+          # This data can be any valid JSON from a previous step in the GitHub Action
+          payload: |
+            {
+              "Repo": "${{ github.event.repository.name }}"
+              "CVE_Count": "${{ steps.cve_count.outputs.count }}",
+              "Link": "https://github.com/liatrio/${{ github.event.repository.name }}/security/code-scanning"
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{secrets.SLACK_CVE_WORKFLOW_WEBHOOK}}
