@@ -27,8 +27,9 @@ jobs:
           # This data can be any valid JSON from a previous step in the GitHub Action
           payload: |
             {
+              "Repo": "${{ github.event.repository.name }}"
               "CVE_Count": "${{ steps.cve_count.outputs.count }}",
               "Link": "https://github.com/liatrio/${{ github.event.repository.name }}/security/code-scanning"
             }
         env:
-          SLACK_WEBHOOK_URL: ${{secrets.slackWebHook}}
+          SLACK_WEBHOOK_URL: ${{secrets.slackWorkflowWebHook}}
