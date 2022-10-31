@@ -3,7 +3,6 @@ FROM jenkins/jenkins:2.366-alpine
 LABEL org.opencontainers.image.source https://github.com/liatrio/builder-images
 
 USER root
-RUN apk add curl=7.85.0-r0 libcurl=7.85.0-r0 --repository=http://dl-cdn.alpinelinux.org/alpine/edge/main
 COPY plugins.txt /usr/share/jenkins/ref/plugins.txt
 ENV CURL_OPTIONS -sSfL --http1.1
 ENV CURL_CONNECTION_TIMEOUT 60
