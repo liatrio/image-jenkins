@@ -32,7 +32,7 @@ cloudbees-folder:6.15
 configuration-as-code:1.51
 credentials-binding:1.27
 credentials:2.6.1.1
-display-url-api:2.3.5
+display-url-api:2.3.6
 docker-commons:1.16
 docker-workflow:1.21
 durable-task:1.37
@@ -81,7 +81,7 @@ plain-credentials:1.7
 pubsub-light:1.13
 resource-disposer:0.14
 scm-api:608.vfa_f971c5a_a_e9
-script-security:1138.v8e727069a_025
+script-security:1175.v4b_d517d6db_f0
 sse-gateway:1.24
 ssh-credentials:277.v95c2fec1c047
 strict-crumb-issuer:2.1.0
@@ -99,5 +99,5 @@ workflow-job:2.41
 workflow-multibranch:2.24
 workflow-scm-step:2.13
 workflow-step-api:639.v6eca_cd8c04a_a_
-workflow-support:813.vb_d7c3d2984a_0
+workflow-api:1164.v760c223ddb_32
 ws-cleanup:0.39
