@@ -3,39 +3,16 @@ name: Slack Notifications
 # Only trigger, when the build workflow succeeded
 on:
   workflow_run:
-    workflows: ["Build, Scan"]
+    workflows: ["Build, Scan", "Build, Scan, Publish"]
     types:
       - completed
   workflow_dispatch:
 
 jobs:
   notify:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Grab info on last code scan from github api
-        id: apiResponse
-        run: |
-          echo 'CVE<<EOF' >> $GITHUB_ENV
-          gh api -H "Accept: application/vnd.github+json" "https://api.github.com/repos/liatrio/${{ github.event.repository.name }}/code-scanning/alerts?per_page=100&state=open" | jq --arg TIME $(date --date="1 day ago" -u +"%Y-%m-%dT%H:%M:%SZ") -c '[.[] | select( .created_at > $TIME)]' | jq -rc '.[].html_url//0' >> $GITHUB_ENV
-          echo 'EOF' >> $GITHUB_ENV
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          
-          
-      - name: Send custom JSON data to Slack workflow
-        id: slack
-        if: env.CVE != '0'
-        uses: slackapi/slack-github-action@v1.22.0
-        with:
-          # This data can be any valid JSON from a previous step in the GitHub Action
-          payload: |
-            {
-              "Repo": "${{ github.event.repository.name }}",
-              "CVE": ${{toJSON(env.CVE)}},
-              "Link": "https://github.com/liatrio/${{ github.event.repository.name }}/security/code-scanning"
-            }
-        env:
-          SLACK_WEBHOOK_URL: ${{secrets.SLACK_CVE_WORKFLOW_WEBHOOK}}
+    uses: liatrio/github-workflows/.github/workflows/cve-slack-notifications@main
+    with:
+      image-name: ${{ github.event.repository.name }}
+    secrets:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      SLACK_WEBHOOK: ${{ secrets.SLACK_CVE_WORKFLOW_WEBHOOK }}
