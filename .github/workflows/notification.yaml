@@ -10,7 +10,7 @@ on:
 
 jobs:
   notify:
-    uses: liatrio/github-workflows/.github/workflows/cve-slack-notifications.yaml@main
+    uses: liatrio/github-workflows/.github/workflows/cve-slack-notifications.yaml@cve-notification-workflow
     with:
       image-name: ${{ github.event.repository.name }}
     secrets:
