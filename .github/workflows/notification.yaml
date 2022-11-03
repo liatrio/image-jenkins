@@ -14,5 +14,4 @@ jobs:
     with:
       image-name: ${{ github.event.repository.name }}
     secrets:
-      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       SLACK_WEBHOOK: ${{ secrets.SLACK_CVE_WORKFLOW_WEBHOOK }}
