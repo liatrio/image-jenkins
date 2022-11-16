@@ -48,7 +48,7 @@ handlebars:1.1.1
 handy-uri-templates-2-api:2.1.8-1.0
 htmlpublisher:1.25
 http_request:1.8.23
-jackson2-api:2.13.3-285.vc03c0256d517
+jackson2-api:2.13.4.20221013-295.v8e29ea_354141
 jenkins-design-language:1.24.8
 jira:3.0.14
 job-dsl:1.76
@@ -88,7 +88,7 @@ strict-crumb-issuer:2.1.0
 structs:308.v852b473a2b8c
 token-macro:2.13
 trilead-api:1.0.13
-variant:1.4
+variant:59.vf075fe829ccb
 workflow-aggregator:2.6
 workflow-api:1108.v57edf648f5d4
 workflow-basic-steps:2.20
