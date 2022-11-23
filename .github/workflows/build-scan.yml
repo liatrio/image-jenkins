@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    uses: liatrio/github-workflows/.github/workflows/build-scan-push.yaml@main
+    uses: liatrio/github-workflows/.github/workflows/build-scan-push.yaml@v0.2.0
     with:
       publish: false
       repository: ghcr.io
