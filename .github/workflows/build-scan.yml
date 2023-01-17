@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    uses: liatrio/github-workflows/.github/workflows/build-scan-push.yaml@main
+    uses: liatrio/github-workflows/.github/workflows/build-scan-push.yaml@v0.4.0
     with:
       publish: false
       repository: ghcr.io
@@ -17,5 +17,6 @@ jobs:
       tag: test
       image-name: ${{ github.event.repository.name }}
       nofail: true
+      offline-scan: true
     secrets:
       registry-password: ${{ secrets.GITHUB_TOKEN }}
